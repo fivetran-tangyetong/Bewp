@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Skribble (Wifi &amp; Data Structure)</string>
+
+    <string-array name="List_Of_Words">
+        <item>Radish</item>
+        <item>Watermelon</item>
+        <item>Dragonfruit</item>
+    </string-array>
+</resources>
