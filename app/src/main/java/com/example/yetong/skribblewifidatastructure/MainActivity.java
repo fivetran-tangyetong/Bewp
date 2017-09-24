@@ -38,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
 
-        getSupportActionBar().hide();
-
         setWordChoice(list_of_all_words);
 
-        setScreenOrientation();
+        //setScreenOrientation();
 
         initVar();
     }
@@ -130,33 +128,33 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void setScreenOrientation() {
-        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
-
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.screenorientation_dialog);
-
-        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
-        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
-
-        potraitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mScreenOrientation = "PORTRAIT";
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                dialog.dismiss();
-            }
-        });
-
-        landscapeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mScreenOrientation = "LANDSCAPE";
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
+//    private void setScreenOrientation() {
+//        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
+//
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setContentView(R.layout.screenorientation_dialog);
+//
+//        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
+//        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
+//
+//        potraitButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mScreenOrientation = "PORTRAIT";
+//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        landscapeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mScreenOrientation = "LANDSCAPE";
+//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 }
