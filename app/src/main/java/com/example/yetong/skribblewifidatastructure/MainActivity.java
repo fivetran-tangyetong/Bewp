@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
 
-        getSupportActionBar().hide();
+        try {
+            getSupportActionBar().hide();
+        } catch (NullPointerException ex){}
 
         setScreenOrientation();
 
@@ -56,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         textView_Frame.getLayoutParams().width = (screen_width / 5);
         textView_Frame.requestLayout();
 
+        LinearLayout playerFace_Frame = (LinearLayout) findViewById(R.id.playerFace_fragment_container);
+        playerFace_Frame.getLayoutParams().width = (screen_width / 5);
+        playerFace_Frame.requestLayout();
+
         dv= new DrawingView(this);
         RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.rootFrame);
         rootLayout.addView(dv);
@@ -68,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         if(transaction.isEmpty()) {
             transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
+            transaction.add(R.id.playerFace_fragment_container, PlayerFace_Fragment.newInstance(), "TextView_Fragment");
             transaction.addToBackStack(null);
             transaction.commit();
         }
 
         textView_Frame.bringToFront();
+        playerFace_Frame.bringToFront();
     }
 
     private void setWordChoice(String[] list_of_all_words) {

@@ -4,18 +4,16 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/playerFace_Frame"
         android:orientation="vertical">
-
-
 
     </LinearLayout>
 
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/playerFace_Frame"
+        android:layout_alignParentRight="true"
         android:background="#000" />
 </RelativeLayout>
