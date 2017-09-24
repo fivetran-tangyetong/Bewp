@@ -25,14 +25,18 @@ public class MainActivity extends AppCompatActivity {
     private String chosen_word;
     private int screen_width;
     private static DrawingView dv;
-    public static String mScreenOrientation;
+    public static String mScreenOrientation = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initVar();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screen_width = displaymetrics.widthPixels;
+
+        list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
 
         getSupportActionBar().hide();
 
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         setScreenOrientation();
 
+        initVar();
     }
 
     private void initVar() {
