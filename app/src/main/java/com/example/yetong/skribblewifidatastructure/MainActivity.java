@@ -5,21 +5,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Point;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,32 +23,52 @@ public class MainActivity extends AppCompatActivity {
     private String[] list_of_all_words;
     private ArrayList<String> ran_chosen_words = new ArrayList<>();
     private String chosen_word;
+    private int screen_width;
+    private static DrawingView dv;
+    public static String mScreenOrientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-
-        LinearLayout textView_Frame = (LinearLayout) findViewById(R.id.textview_fragment_container);
-        textView_Frame.getLayoutParams().width = (width / 5);
-        textView_Frame.requestLayout();
-
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
-        transaction.addToBackStack(null);
-        transaction.commit();
+        initVar();
 
         getSupportActionBar().hide();
 
-        list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
         setWordChoice(list_of_all_words);
 
         setScreenOrientation();
+
+    }
+
+    private void initVar() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screen_width = displaymetrics.widthPixels;
+
+        list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
+
+        LinearLayout textView_Frame = (LinearLayout) findViewById(R.id.textview_fragment_container);
+        textView_Frame.getLayoutParams().width = (screen_width / 5);
+        textView_Frame.requestLayout();
+
+        dv= new DrawingView(this);
+        RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.rootFrame);
+        rootLayout.addView(dv);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        dv.init(metrics);
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if(transaction.isEmpty()) {
+            transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+
 
     }
 
@@ -124,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         potraitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mScreenOrientation = "PORTRAIT";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 dialog.dismiss();
             }
@@ -132,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
         landscapeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mScreenOrientation = "LANDSCAPE";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 dialog.dismiss();
             }

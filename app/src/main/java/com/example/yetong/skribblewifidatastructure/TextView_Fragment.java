@@ -23,15 +23,6 @@ public class TextView_Fragment extends Fragment {
         return new TextView_Fragment();
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        // Get rage face names and descriptions.
-        final Resources resources = context.getResources();
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
