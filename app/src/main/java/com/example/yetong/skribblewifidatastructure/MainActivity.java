@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        setWordChoice(list_of_all_words);
-
         setScreenOrientation();
 
         initVar();
@@ -144,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mScreenOrientation = "PORTRAIT";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                setWordChoice(list_of_all_words);
                 dialog.dismiss();
             }
         });
@@ -153,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mScreenOrientation = "LANDSCAPE";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setWordChoice(list_of_all_words);
                 dialog.dismiss();
             }
         });
