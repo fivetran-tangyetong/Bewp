@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
 
-
+        textView_Frame.bringToFront();
     }
 
     private void setWordChoice(String[] list_of_all_words) {
