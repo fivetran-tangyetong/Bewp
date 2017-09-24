@@ -1,20 +1,42 @@
 package com.example.yetong.skribblewifidatastructure;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * Created by Yetong on 2017/9/24.
  */
 
 public class TextView_Fragment extends Fragment {
+    public static TextView_Fragment newInstance() {
+        return new TextView_Fragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // Get rage face names and descriptions.
+        final Resources resources = context.getResources();
+    }
+
+
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_main, container, false);
+
+        return inflater.inflate(R.layout.textview_fragment, container, false);
     }
 
 

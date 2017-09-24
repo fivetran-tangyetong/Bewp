@@ -1,12 +1,15 @@
 package com.example.yetong.skribblewifidatastructure;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -33,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
+
+        LinearLayout textView_Frame = (LinearLayout) findViewById(R.id.textview_fragment_container);
+        textView_Frame.getLayoutParams().width = (width / 5);
+        textView_Frame.requestLayout();
+
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
+        transaction.addToBackStack(null);
+        transaction.commit();
+
         getSupportActionBar().hide();
 
         list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
@@ -40,25 +57,16 @@ public class MainActivity extends AppCompatActivity {
 
         setScreenOrientation();
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-
-        LinearLayout textView_Frame = (LinearLayout) findViewById(R.id.textView_Frame);
-        textView_Frame.getLayoutParams().width = (width / 5);
-        textView_Frame.requestLayout();
-
     }
 
     private void setWordChoice(String[] list_of_all_words) {
         ArrayList<String> list_of_all_words_clone = new ArrayList<>();
-       for(int x = 0; x < list_of_all_words.length; x ++){
-           list_of_all_words_clone.add(list_of_all_words[x]);
-       }
+        for (int x = 0; x < list_of_all_words.length; x++) {
+            list_of_all_words_clone.add(list_of_all_words[x]);
+        }
         int i;
         Random r = new Random();
-        while (ran_chosen_words.size() < 3){
+        while (ran_chosen_words.size() < 3) {
             i = r.nextInt(list_of_all_words_clone.size() - 0) + 0;
             ran_chosen_words.add(list_of_all_words_clone.get(i));
             list_of_all_words_clone.remove(i);
@@ -116,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         potraitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 dialog.dismiss();
             }
         });
@@ -124,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         landscapeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 dialog.dismiss();
             }
         });

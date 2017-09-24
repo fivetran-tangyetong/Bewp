@@ -17,32 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:id="@+id/textView_Frame"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="10dp"
-            android:layout_weight="10"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#000" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="10dp"
-            android:layout_weight="1.5"/>
-    </LinearLayout>
-
-    <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:background="#000"
-        android:layout_alignLeft="@+id/textView_Frame"/>
-
+        android:id="@+id/textview_fragment_container"
+        android:orientation="vertical"></LinearLayout>
 
 </RelativeLayout>
