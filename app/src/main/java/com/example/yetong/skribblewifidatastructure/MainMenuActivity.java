@@ -22,7 +22,6 @@ public class MainMenuActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
         });
@@ -30,7 +29,7 @@ public class MainMenuActivity extends AppCompatActivity{
         //TODO joinGameButton
     }
 
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);
         if(hasFocus){
@@ -41,5 +40,5 @@ public class MainMenuActivity extends AppCompatActivity{
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN);
         }
-    }
+    }*/
 }
