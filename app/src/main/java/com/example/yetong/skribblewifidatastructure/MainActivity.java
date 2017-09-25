@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
 
-        setWordChoice(list_of_all_words);
+        try {
+            getSupportActionBar().hide();
+        } catch (NullPointerException ex){}
 
-        //setScreenOrientation();
+        setScreenOrientation();
 
         initVar();
     }
@@ -56,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
         textView_Frame.getLayoutParams().width = (screen_width / 5);
         textView_Frame.requestLayout();
 
+        LinearLayout playerFace_Frame = (LinearLayout) findViewById(R.id.playerFace_fragment_container);
+        playerFace_Frame.getLayoutParams().width = (screen_width / 5);
+        playerFace_Frame.requestLayout();
+
         dv= new DrawingView(this);
         RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.rootFrame);
         rootLayout.addView(dv);
@@ -68,11 +74,13 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         if(transaction.isEmpty()) {
             transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
+            transaction.add(R.id.playerFace_fragment_container, PlayerFace_Fragment.newInstance(), "TextView_Fragment");
             transaction.addToBackStack(null);
             transaction.commit();
         }
 
         textView_Frame.bringToFront();
+        playerFace_Frame.bringToFront();
     }
 
     private void setWordChoice(String[] list_of_all_words) {
@@ -128,33 +136,35 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-//    private void setScreenOrientation() {
-//        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
-//
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.screenorientation_dialog);
-//
-//        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
-//        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
-//
-//        potraitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mScreenOrientation = "PORTRAIT";
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        landscapeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mScreenOrientation = "LANDSCAPE";
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+    private void setScreenOrientation() {
+        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.screenorientation_dialog);
+
+        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
+        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
+
+        potraitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mScreenOrientation = "PORTRAIT";
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                setWordChoice(list_of_all_words);
+                dialog.dismiss();
+            }
+        });
+
+        landscapeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mScreenOrientation = "LANDSCAPE";
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setWordChoice(list_of_all_words);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 }
