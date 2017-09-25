@@ -61,11 +61,11 @@ public class DrawingView extends View {
         int height = metrics.heightPixels;
         int width = metrics.widthPixels;
 
-        if(MainActivity.mScreenOrientation.equals("PORTRAIT")){
+       /* if(MainActivity.mScreenOrientation.equals("PORTRAIT")){
             mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        } else {
+        } else {*/
             mBitmap = Bitmap.createBitmap(height, width, Bitmap.Config.ARGB_8888);
-        }
+        //}
 
         mCanvas = new Canvas(mBitmap);
 
