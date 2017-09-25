@@ -38,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         list_of_all_words = getApplicationContext().getResources().getStringArray(R.array.List_Of_Words);
 
-        try {
-            getSupportActionBar().hide();
-        } catch (NullPointerException ex){}
+        setWordChoice(list_of_all_words);
 
-        setScreenOrientation();
+        //setScreenOrientation();
 
         initVar();
     }
@@ -58,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
         textView_Frame.getLayoutParams().width = (screen_width / 5);
         textView_Frame.requestLayout();
 
-        LinearLayout playerFace_Frame = (LinearLayout) findViewById(R.id.playerFace_fragment_container);
-        playerFace_Frame.getLayoutParams().width = (screen_width / 5);
-        playerFace_Frame.requestLayout();
-
         dv= new DrawingView(this);
         RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.rootFrame);
         rootLayout.addView(dv);
@@ -74,13 +68,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         if(transaction.isEmpty()) {
             transaction.add(R.id.textview_fragment_container, TextView_Fragment.newInstance(), "TextView_Fragment");
-            transaction.add(R.id.playerFace_fragment_container, PlayerFace_Fragment.newInstance(), "TextView_Fragment");
             transaction.addToBackStack(null);
             transaction.commit();
         }
 
         textView_Frame.bringToFront();
-        playerFace_Frame.bringToFront();
     }
 
     private void setWordChoice(String[] list_of_all_words) {
@@ -136,7 +128,20 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void setScreenOrientation() {
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        }
+    }
+
+/*    private void setScreenOrientation() {
         final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -150,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mScreenOrientation = "PORTRAIT";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                setWordChoice(list_of_all_words);
                 dialog.dismiss();
             }
         });
@@ -160,11 +164,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mScreenOrientation = "LANDSCAPE";
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                setWordChoice(list_of_all_words);
                 dialog.dismiss();
             }
         });
 
         dialog.show();
-    }
+    }*/
 }

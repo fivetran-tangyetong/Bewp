@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Skribble(Wifi&amp;DataStructure).iml" filepath="$PROJECT_DIR$/Skribble(Wifi&amp;DataStructure).iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bewp.iml" filepath="$PROJECT_DIR$/bewp.iml" />
     </modules>
   </component>
 </project>
