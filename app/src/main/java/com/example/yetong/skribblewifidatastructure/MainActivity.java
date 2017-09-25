@@ -128,33 +128,46 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-//    private void setScreenOrientation() {
-//        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
-//
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.screenorientation_dialog);
-//
-//        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
-//        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
-//
-//        potraitButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mScreenOrientation = "PORTRAIT";
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        landscapeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mScreenOrientation = "LANDSCAPE";
-//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        }
+    }
+
+/*    private void setScreenOrientation() {
+        final Dialog dialog = new Dialog(context);                  // Creating custom Dialog to set Screen Orientation
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.screenorientation_dialog);
+
+        Button potraitButton = (Button) dialog.findViewById(R.id.screenOrientation_portraitButton);
+        Button landscapeButton = (Button) dialog.findViewById(R.id.screenOrientation_landscapeButton);
+
+        potraitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mScreenOrientation = "PORTRAIT";
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                dialog.dismiss();
+            }
+        });
+
+        landscapeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mScreenOrientation = "LANDSCAPE";
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }*/
 }
