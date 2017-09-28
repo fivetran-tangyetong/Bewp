@@ -22,4 +22,11 @@
         android:id="@+id/playerFace_fragment_container"
         android:orientation="vertical"></LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/draw_option_fragment_container"
+        android:orientation="horizontal"></LinearLayout>
+
 </RelativeLayout>

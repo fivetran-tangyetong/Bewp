@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class DrawingView extends View {
 
-    public static int BRUSH_SIZE = 20;
+    public static int BRUSH_SIZE = 10;
     public static final int DEFAULT_COLOR = Color.RED;
     public static final int DEFAULT_BG_COLOR = Color.WHITE;
     private static final float TOUCH_TOLERANCE = 4;
@@ -36,6 +36,7 @@ public class DrawingView extends View {
     private Bitmap mBitmap;
     private Canvas mCanvas;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+    private int height, width;
 
     public DrawingView(Context context) {
         this(context, null);
@@ -58,8 +59,8 @@ public class DrawingView extends View {
     }
 
     public void init(DisplayMetrics metrics) {
-        int height = metrics.heightPixels;
-        int width = metrics.widthPixels;
+        height = metrics.heightPixels;
+        width = metrics.widthPixels;
 
        /* if(MainActivity.mScreenOrientation.equals("PORTRAIT")){
             mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
